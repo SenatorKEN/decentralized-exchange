@@ -57,3 +57,8 @@
 (define-read-only (is-supported-token (token principal))
   (or (is-eq token WRAPPED-BTC) (is-eq token STACKS-TOKEN))
 )
+
+;; Get order details
+(define-read-only (get-order (sender principal) (amount-in uint) (token-in principal) (token-out principal))
+  (map-get? orders { sender: sender, amount-in: amount-in, token-in: token-in, token-out: token-out })
+)
