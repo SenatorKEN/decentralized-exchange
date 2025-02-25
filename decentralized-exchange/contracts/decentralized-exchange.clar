@@ -20,3 +20,20 @@
 (define-data-var liquidity-stx uint u0)
 (define-data-var collected-fees uint u0)
 (define-data-var order-counter uint u0)
+
+
+;; Read-only functions
+
+;; Get current liquidity amounts
+(define-read-only (get-liquidity)
+  {
+    btc: (var-get liquidity-btc),
+    stx: (var-get liquidity-stx)
+  }
+)
+
+
+;; Get collected fees
+(define-read-only (get-fees)
+  (var-get collected-fees)
+)
