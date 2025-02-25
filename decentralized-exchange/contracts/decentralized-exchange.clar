@@ -9,5 +9,8 @@
   { timestamp: uint }                                                              ;; Order timestamp
 )
 
-
-
+;; Error codes
+(define-constant ERR-UNAUTHORIZED u401)
+(define-constant ERR-NOT-FOUND u404)
+(define-constant ERR-INSUFFICIENT-BALANCE u500)
+(define-constant ERR-INVALID-TOKEN u501)
