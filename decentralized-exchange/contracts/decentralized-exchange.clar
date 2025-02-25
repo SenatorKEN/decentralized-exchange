@@ -14,3 +14,9 @@
 (define-constant ERR-NOT-FOUND u404)
 (define-constant ERR-INSUFFICIENT-BALANCE u500)
 (define-constant ERR-INVALID-TOKEN u501)
+
+;; Data variables
+(define-data-var liquidity-btc uint u0)
+(define-data-var liquidity-stx uint u0)
+(define-data-var collected-fees uint u0)
+(define-data-var order-counter uint u0)
