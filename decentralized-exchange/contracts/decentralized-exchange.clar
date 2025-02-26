@@ -126,3 +126,20 @@
 (define-read-only (get-total-lp-supply)
   (var-get total-lp-tokens)
 )
+
+;; Get limit order details
+(define-read-only (get-limit-order (id uint))
+  (map-get? limit-orders { id: id })
+)
+
+
+;; Get current oracle price
+(define-read-only (get-oracle-price)
+  (var-get oracle-price-btc-stx)
+)
+
+;; Check if contract is paused
+(define-read-only (is-paused)
+  (var-get paused)
+)
+
