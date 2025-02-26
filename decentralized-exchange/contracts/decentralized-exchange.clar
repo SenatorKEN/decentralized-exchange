@@ -106,3 +106,23 @@
     repaid: bool 
   }
 )
+
+(define-map allowed-tokens
+  { token: principal }
+  { enabled: bool }
+)
+
+
+(define-map user-settings
+  { user: principal }
+  { 
+    default-slippage: uint, 
+    auto-claim-rewards: bool 
+  }
+)
+
+
+;; Get total LP tokens supply
+(define-read-only (get-total-lp-supply)
+  (var-get total-lp-tokens)
+)
