@@ -143,3 +143,21 @@
   (var-get paused)
 )
 
+
+;; Update oracle price (admin only)
+(define-public (update-oracle-price (new-price uint))
+  (begin
+    (asserts! (is-eq tx-sender ADMIN) (err ERR-UNAUTHORIZED))
+    (var-set oracle-price-btc-stx new-price)
+    (ok new-price)
+  )
+)
+
+;; Pause or unpause the contract (admin only)
+(define-public (set-paused (new-status bool))
+  (begin
+    (asserts! (is-eq tx-sender ADMIN) (err ERR-UNAUTHORIZED))
+    (var-set paused new-status)
+    (ok new-status)
+  )
+)
