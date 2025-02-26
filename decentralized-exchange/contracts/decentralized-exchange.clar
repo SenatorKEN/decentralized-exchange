@@ -192,3 +192,21 @@
     (ok amount)
   )
 )
+
+(define-private (abs (a int))
+  (if (< a 0)
+    (* a -1)
+    a
+  )
+)
+
+
+;; Initialize allowed tokens (admin only)
+(define-public (initialize-allowed-tokens)
+  (begin
+    (asserts! (is-eq tx-sender ADMIN) (err ERR-UNAUTHORIZED))
+    (map-set allowed-tokens { token: WRAPPED-BTC } { enabled: true })
+    (map-set allowed-tokens { token: STACKS-TOKEN } { enabled: true })
+    (ok true)
+  )
+)
