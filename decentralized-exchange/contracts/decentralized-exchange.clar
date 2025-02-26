@@ -263,3 +263,51 @@
 (define-read-only (get-total-lp-supply)
   (var-get total-lp-tokens)
 )
+
+;; Get limit order details
+(define-read-only (get-limit-order (id uint))
+  (map-get? limit-orders { id: id })
+)
+
+;; Get current oracle price
+(define-read-only (get-oracle-price)
+  (var-get oracle-price-btc-stx)
+)
+
+;; Check if contract is paused
+(define-read-only (is-paused)
+  (var-get paused)
+)
+
+
+;; Get user trading volume and tier
+(define-read-only (get-user-volume (user principal))
+  (default-to 
+    { btc-volume: u0, stx-volume: u0, tier: u0 } 
+    (map-get? volume-by-user { user: user })
+  )
+)
+
+;; Get staking position details
+(define-read-only (get-staking-position (staker principal))
+  (map-get? staking-positions { staker: staker })
+)
+
+;; Get referral relationship
+(define-read-only (get-referrer (user principal))
+  (map-get? referral-relationships { user: user })
+)
+
+;; Get referral rewards
+(define-read-only (get-referral-rewards (referrer principal))
+  (default-to 
+    { pending-rewards: u0, lifetime-rewards: u0 } 
+    (map-get? referral-rewards { referrer: referrer })
+  )
+)
+
+;; Get impermanent loss protection details
+(define-read-only (get-impermanent-loss-protection (user principal))
+  (map-get? impermanent-loss-protection { user: user })
+)
+
