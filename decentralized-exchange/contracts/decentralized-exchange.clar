@@ -4,6 +4,12 @@
 (define-constant FEE-RATE u500) ;; 0.5% trading fee (500 basis points)
 (define-constant ADMIN 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM) ;; Admin address
 
+
+
+;; LP Token Constants
+(define-constant LP-TOKEN-NAME "LP-BTC-STX")
+(define-constant LP-TOKEN-SYMBOL "LPBS")
+
 (define-map orders
   { sender: principal, amount-in: uint, token-in: principal, token-out: principal } ;; Order details
   { timestamp: uint }                                                              ;; Order timestamp
@@ -14,12 +20,21 @@
 (define-constant ERR-NOT-FOUND u404)
 (define-constant ERR-INSUFFICIENT-BALANCE u500)
 (define-constant ERR-INVALID-TOKEN u501)
+(define-constant ERR-EXPIRED u502)
+(define-constant ERR-SLIPPAGE-TOO-HIGH u503)
+(define-constant ERR-MINIMUM-AMOUNT u504)
+(define-constant ERR-FLASH-LOAN-NOT-REPAID u505)
 
 ;; Data variables
 (define-data-var liquidity-btc uint u0)
 (define-data-var liquidity-stx uint u0)
 (define-data-var collected-fees uint u0)
 (define-data-var order-counter uint u0)
+(define-data-var total-lp-tokens uint u0)
+(define-data-var protocol-fee-percent uint u10) ;; 10% of collected fees go to protocol
+(define-data-var min-liquidity uint u1000) ;; Minimum liquidity to prevent price manipulation
+(define-data-var paused bool false)
+(define-data-var oracle-price-btc-stx uint u0) ;; Last oracle price in STX per BTC
 
 
 ;; Read-only functions
@@ -62,3 +77,6 @@
 (define-read-only (get-order (sender principal) (amount-in uint) (token-in principal) (token-out principal))
   (map-get? orders { sender: sender, amount-in: amount-in, token-in: token-in, token-out: token-out })
 )
+
+
+
