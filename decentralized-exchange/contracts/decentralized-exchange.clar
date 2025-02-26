@@ -161,3 +161,34 @@
     (ok new-status)
   )
 )
+
+;; Update user settings
+(define-public (update-user-settings (default-slippage uint) (auto-claim-rewards bool))
+  (begin
+    (map-set user-settings
+      { user: tx-sender }
+      { 
+        default-slippage: default-slippage, 
+        auto-claim-rewards: auto-claim-rewards 
+      }
+    )
+    (ok true)
+  )
+)
+
+;; Helper function to determine if it's time for auto-distribution
+(define-read-only (is-auto-distribution-time)
+  (is-eq (mod stacks-block-height u1440) u0) ;; Approximately daily on STX blockchain
+)
+
+;; Helper function to record LP rewards
+(define-private (record-lp-rewards (amount uint))
+  (let (
+    (total-lp (var-get total-lp-tokens))
+  )
+    ;; We're not actually distributing here, just recording
+    ;; In a real contract, we would iterate through LP holders
+    ;; For simplicity, we're just acknowledging the amount
+    (ok amount)
+  )
+)
