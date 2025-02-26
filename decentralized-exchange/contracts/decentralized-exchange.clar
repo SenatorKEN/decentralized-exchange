@@ -243,3 +243,23 @@
   { referrer: principal }
   { pending-rewards: uint, lifetime-rewards: uint }
 )
+
+
+(define-map volume-by-user
+  { user: principal }
+  { btc-volume: uint, stx-volume: uint, tier: uint }
+)
+
+(define-map impermanent-loss-protection
+  { user: principal }
+  { 
+    protection-amount: uint, 
+    last-updated: uint,
+    eligible-since: uint
+  }
+)
+
+;; Get total LP tokens supply
+(define-read-only (get-total-lp-supply)
+  (var-get total-lp-tokens)
+)
