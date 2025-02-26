@@ -221,3 +221,25 @@
     (ok true)
   )
 )
+
+;; New maps for additional features
+(define-map staking-positions
+  { staker: principal }
+  {
+    amount: uint,
+    start-height: uint,
+    lock-period: uint,
+    multiplier: uint
+  }
+)
+
+(define-map referral-relationships
+  { user: principal }
+  { referrer: principal }
+)
+
+
+(define-map referral-rewards
+  { referrer: principal }
+  { pending-rewards: uint, lifetime-rewards: uint }
+)
