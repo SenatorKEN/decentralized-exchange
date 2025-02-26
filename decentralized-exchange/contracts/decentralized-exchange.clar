@@ -79,4 +79,30 @@
 )
 
 
+(define-map lp-balances 
+  { owner: principal } 
+  { amount: uint }
+)
 
+(define-map limit-orders 
+  { id: uint } 
+  { 
+    sender: principal, 
+    token-in: principal, 
+    token-out: principal, 
+    amount-in: uint, 
+    min-amount-out: uint, 
+    expires-at: uint 
+  }
+)
+
+(define-map flash-loans 
+  { id: uint } 
+  { 
+    borrower: principal, 
+    token: principal, 
+    amount: uint, 
+    block: uint, 
+    repaid: bool 
+  }
+)
