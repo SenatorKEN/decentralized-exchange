@@ -4,6 +4,11 @@
 (define-constant FEE-RATE u500) ;; 0.5% trading fee (500 basis points)
 (define-constant ADMIN 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM) ;; Admin address
 
+;; New constants for additional features
+(define-constant REFERRAL-REWARD-RATE u100) ;; 0.1% of swap amount as referral reward (100 basis points)
+(define-constant MAX-DYNAMIC-FEE u2000) ;; 2% maximum dynamic fee (2000 basis points)
+(define-constant MIN-DYNAMIC-FEE u100) ;; 0.1% minimum dynamic fee (100 basis points)
+(define-constant EMERGENCY-ADMIN 'ST2CY5V39NHDPWSXMW9QDT3HC3GD6Q6XX4CFRK9AG) ;; Emergency admin for critical functions
 
 
 ;; LP Token Constants
@@ -24,6 +29,12 @@
 (define-constant ERR-SLIPPAGE-TOO-HIGH u503)
 (define-constant ERR-MINIMUM-AMOUNT u504)
 (define-constant ERR-FLASH-LOAN-NOT-REPAID u505)
+;; New error codes
+(define-constant ERR-POOL-IMBALANCED u506)
+(define-constant ERR-COOLDOWN-PERIOD u507)
+(define-constant ERR-MAX-TRANSACTION-SIZE u508)
+(define-constant ERR-EMERGENCY-SHUTDOWN u509)
+
 
 ;; Data variables
 (define-data-var liquidity-btc uint u0)
